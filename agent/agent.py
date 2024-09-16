@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_core.pydantic_v1 import BaseModel, Field, create_model
 from pydantic import create_model, Field
@@ -159,3 +162,4 @@ graph.add_edge("tool_node", "call_model")
 graph.add_conditional_edges("call_checker", route_after_checker)
 graph.add_edge("bad_agent", "call_model")
 graph = graph.compile()
+graph.get_graph().draw_mermaid_png(output_file_path="graph.png")
